@@ -146,13 +146,14 @@ app.get('/product/:id', async (req, res) => {
   const _product_id = req.params.id;
   //const product = products.find(product => product.id === id);
 
+  console.log(_product_id);
   let _product;
   await client.connect();
 
   const database = client.db(dbName);
   const collection = database.collection(collectionName);
 
-  const findOneQuery = { id: new ObjectId(_product_id) };
+  const findOneQuery = { _id: new ObjectId(_product_id) };
 
   //try {
   _product = await collection.findOne(findOneQuery);
@@ -221,7 +222,7 @@ app.put('/product/:id', async (req, res) => {
   const database = client.db(dbName);
   const collection = database.collection(collectionName);
 
-  const findOneQuery = { id: new ObjectId(_product_id) };
+  const findOneQuery = { _id: new ObjectId(_product_id) };
 
   const _product = await collection.findOne(findOneQuery);
 
@@ -287,7 +288,7 @@ app.delete('/product/:id', async (req, res) => {
   const database = client.db(dbName);
   const collection = database.collection(collectionName);
 
-  const findOneQuery = { id: new ObjectId(_product_id) };
+  const findOneQuery = { _id: new ObjectId(_product_id) };
 
   console.log(`Product ID is ${_product_id}`);
   const _product = await collection.findOne(findOneQuery);
