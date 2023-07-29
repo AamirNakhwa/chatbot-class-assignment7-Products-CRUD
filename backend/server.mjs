@@ -123,7 +123,7 @@ app.get('/products', async (req, res) => {
     await _searchResult.forEach(product => {
       console.log(`${product.name}`);
       _products.push({
-        id: product._id,
+        _id: product._id,
         name: product.name,
         category: product.category,
         description: product.description,
@@ -209,6 +209,7 @@ app.post('/product', async (req, res) => {
 // PUT /product/:id - Update a product
 app.put('/product/:id', async (req, res) => {
   const _product_id = req.params.id;
+  console.log(`_product_id is ${_product_id}`);
   const { name, category, description, imageURL, price, isActive } = req.body;
 
   // Validate required information
@@ -225,7 +226,7 @@ app.put('/product/:id', async (req, res) => {
   const findOneQuery = { _id: new ObjectId(_product_id) };
 
   const _product = await collection.findOne(findOneQuery);
-
+  console.log(_product);
   //const productIndex = products.findIndex(product => product.id === id);
 
   //try {

@@ -1,5 +1,5 @@
-//const baseURL = 'https://products-crud-alpha.vercel.app';
-const baseURL = 'http://localhost:3000';
+const baseURL = 'https://products-crud-alpha.vercel.app';
+//const baseURL = 'http://localhost:3000';
 
 document.addEventListener('DOMContentLoaded', function () {
     startLoading();
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 stopLoading();
             })
             .catch(error => {
-                showToast('Unable to register new product!');
+                showToast('Unable to save product!');
                 console.error('Error:', error);
                 // Handle any errors that occurred during the request
 
@@ -204,7 +204,7 @@ function setImageFromURL() {
 function getProductCard(product) {
     const newCard = document.createElement('div');
     newCard.classList.add('card');
-    newCard.setAttribute('data-id', product.id);
+    newCard.setAttribute('data-id', product._id);
     newCard.innerHTML = `
         <span class="category">${product.category}</span>
             <img src="${product.imageURL}" alt="${product.name}">
@@ -316,7 +316,8 @@ function getProduct(id) {
             const product = response.data;
             console.log('Product:', product);
             // Fill the form with the selected product details
-            document.getElementById('product-id').value = product.id;
+            
+            document.getElementById('product-id').value = product._id;
             document.getElementById('product-category').value = product.category;
             document.getElementById('product-name').value = product.name;
             document.getElementById('product-description').value = product.description;
