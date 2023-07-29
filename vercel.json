@@ -2,9 +2,9 @@
      "version": 2, 
      "name": "ExpressJS Rest API Products", 
      "builds": [ 
-        { "src": "/Backend/server.mjs", "use": "@vercel/node" } 
+        { "src": "/backend/server.mjs", "use": "@vercel/node" } 
      ], 
      "routes": [ 
-        { "src": "/(.*)", "dest": "/Backend/server.mjs" } 
+        { "src": "/(.*)", "dest": "/backend/server.mjs" } 
      ] 
 }
