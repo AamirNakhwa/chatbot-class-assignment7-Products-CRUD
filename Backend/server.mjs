@@ -1,10 +1,15 @@
 import express from 'express';
 import { MongoClient, ServerApiVersion, ObjectId } from 'mongodb';
 import { customAlphabet } from 'nanoid'
+import path from "path";
 import cors from 'cors';
+
+const __dirname = path.resolve();
 
 const app = express();
 const port = 3000;
+
+app.use(express.static(path.join(__dirname, "frontend")));
 
 const dbName = 'productsDB';
 const collectionName = 'products';
