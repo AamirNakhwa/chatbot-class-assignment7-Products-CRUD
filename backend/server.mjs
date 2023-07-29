@@ -123,7 +123,7 @@ app.get('/products', async (req, res) => {
     await _searchResult.forEach(product => {
       console.log(`${product.name}`);
       _products.push({
-        id: product.id,
+        id: product._id,
         name: product.name,
         category: product.category,
         description: product.description,
