@@ -10,8 +10,8 @@ const __dirname = path.resolve();
 const app = express();
 const port = 3000;
 
-console.log(express.static(path.join(__dirname, "frontend")));
-app.use(express.static(path.join(__dirname, "frontend")));
+//console.log(express.static(path.join(__dirname, "frontend")));
+app.use(express.static(path.join(__dirname, "../frontend")));
 
 const dbName = 'productsDB';
 const collectionName = 'products';
