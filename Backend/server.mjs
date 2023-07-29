@@ -114,7 +114,7 @@ app.get('/products', async (req, res) => {
   let _searchResult = [];
   let _products = [];
 
-  try {
+  //try {
     _searchResult = await collection.find(findQuery);//.sort({ name: 1 });
     await _searchResult.forEach(product => {
       console.log(`${product.name}`);
@@ -129,9 +129,9 @@ app.get('/products', async (req, res) => {
       });
     });
     console.log(_products);
-  } catch (err) {
-    console.error(`Something went wrong trying to find the documents: ${err}\n`);
-  }
+  // } catch (err) {
+  //   console.error(`Something went wrong trying to find the documents: ${err}\n`);
+  // }
 
   await client.close();
   res.status(200).json({ message: "Success", data: _products });
