@@ -2,13 +2,16 @@ import express from 'express';
 import { MongoClient, ServerApiVersion } from 'mongodb';
 import { customAlphabet } from 'nanoid'
 import cors from 'cors';
-import path from "path";
+//import path from "path";
 
 const app = express();
 const port = 3000;
 
-const __dirname = path.resolve();
-app.use('/frontend', express.static(path.join(__dirname, "../frontend")));
+//enabling cors
+app.use(cors());
+
+// const __dirname = path.resolve();
+// app.use('/frontend', express.static(path.join(__dirname, "../frontend")));
 
 const dbName = 'productsDB';
 const collectionName = 'products';
@@ -40,9 +43,6 @@ async function run() {
     await client.close();
   }
 }
-
-//enabling cors
-app.use(cors());
 
 // Sample data for products
 // let products = [
