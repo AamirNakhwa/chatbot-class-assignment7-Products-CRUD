@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     startLoading();
     setImageFromURL();
     getProducts();
-
+    
     const addButton = document.querySelector('.big-button');
     const newProductContainer = document.querySelector('.new-product-container');
     const cancelButton = document.querySelector('.btn-secondary');
