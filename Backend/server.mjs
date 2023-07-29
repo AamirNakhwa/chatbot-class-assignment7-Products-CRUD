@@ -3,7 +3,6 @@ import { MongoClient, ServerApiVersion, ObjectId } from 'mongodb';
 import { customAlphabet } from 'nanoid'
 import path from "path";
 import cors from 'cors';
-import { log } from 'console';
 
 const __dirname = path.resolve();
 
@@ -11,7 +10,8 @@ const app = express();
 const port = 3000;
 
 //console.log(express.static(path.join(__dirname, "frontend")));
-app.use(express.static(path.join(__dirname, "../frontend")));
+app.use('/frontend', express.static(path.join(__dirname, "../frontend")));
+//app.use(express.static(path.join(__dirname, "../frontend")));
 
 const dbName = 'productsDB';
 const collectionName = 'products';
