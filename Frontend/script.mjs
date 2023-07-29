@@ -1,5 +1,5 @@
-//const baseURL = 'https://chatbot-class-assignment7-products-api.vercel.app';
-const baseURL = 'http://localhost:3000';
+const baseURL = 'https://chatbot-class-assignment7-products-api.vercel.app';
+//const baseURL = 'http://localhost:3000';
 
 document.addEventListener('DOMContentLoaded', function () {
     startLoading();
