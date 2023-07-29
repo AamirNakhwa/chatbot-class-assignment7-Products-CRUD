@@ -1,5 +1,5 @@
 import express from 'express';
-import { MongoClient, ServerApiVersion } from 'mongodb';
+import { MongoClient, ObjectId, ServerApiVersion } from 'mongodb';
 import { customAlphabet } from 'nanoid'
 import cors from 'cors';
 //import path from "path";
@@ -143,7 +143,7 @@ app.get('/products', async (req, res) => {
 
 // GET /product/:id - Get a specific product by id
 app.get('/product/:id', async (req, res) => {
-  const _product_id = parseInt(req.params.id);
+  const _product_id = req.params.id;
   //const product = products.find(product => product.id === id);
 
   let _product;
@@ -152,7 +152,7 @@ app.get('/product/:id', async (req, res) => {
   const database = client.db(dbName);
   const collection = database.collection(collectionName);
 
-  const findOneQuery = { id: _product_id };
+  const findOneQuery = { id: new ObjectId(_product_id) };
 
   //try {
   _product = await collection.findOne(findOneQuery);
@@ -179,8 +179,9 @@ app.post('/product', async (req, res) => {
     return;
   }
 
-  const id = Math.floor(Math.random() * 1000) + 1; // Generate a random id
-  const newProduct = { id, name, category, description, imageURL, price, isActive };
+  //const id = Math.floor(Math.random() * 1000) + 1; // Generate a random id
+  const newProduct = { //id, 
+    name, category, description, imageURL, price, isActive };
 
   await client.connect();
 
@@ -206,7 +207,7 @@ app.post('/product', async (req, res) => {
 
 // PUT /product/:id - Update a product
 app.put('/product/:id', async (req, res) => {
-  const _product_id = parseInt(req.params.id);
+  const _product_id = req.params.id;
   const { name, category, description, imageURL, price, isActive } = req.body;
 
   // Validate required information
@@ -220,7 +221,7 @@ app.put('/product/:id', async (req, res) => {
   const database = client.db(dbName);
   const collection = database.collection(collectionName);
 
-  const findOneQuery = { id: _product_id };
+  const findOneQuery = { id: new ObjectId(_product_id) };
 
   const _product = await collection.findOne(findOneQuery);
 
@@ -279,14 +280,14 @@ app.put('/product/:id', async (req, res) => {
 // DELETE /product/:id - Delete a product
 app.delete('/product/:id', async (req, res) => {
 
-  const _product_id = parseInt(req.params.id);
+  const _product_id = req.params.id;
 
   await client.connect();
 
   const database = client.db(dbName);
   const collection = database.collection(collectionName);
 
-  const findOneQuery = { id: _product_id };
+  const findOneQuery = { id: new ObjectId(_product_id) };
 
   console.log(`Product ID is ${_product_id}`);
   const _product = await collection.findOne(findOneQuery);
