@@ -2,8 +2,10 @@ import express from 'express';
 import { MongoClient, ObjectId, ServerApiVersion } from 'mongodb';
 import { customAlphabet } from 'nanoid'
 import cors from 'cors';
+import dotenv from 'dotenv'
 //import path from "path";
 
+dotenv.config();
 const app = express();
 const port = 3000;
 
@@ -20,7 +22,8 @@ const nanoid = customAlphabet("1234567890", 10);
 
 console.log("testing nanoid : ", nanoid());
 
-const uri = "mongodb+srv://dbuser:dbpassword@cluster0.ygowwij.mongodb.net/?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@cluster0.ygowwij.mongodb.net/?retryWrites=true&w=majority`;
+console.log(uri);
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
